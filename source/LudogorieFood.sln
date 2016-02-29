@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{20DE9D7D-7294-40C7-9DF5-ECE9346797D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudogorieFood.Web", "LudogorieFood.Web\LudogorieFood.Web.csproj", "{9407D843-EEEB-43C1-B139-D3AB97FDA10F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2DEC298A-364E-4374-A379-5C73208A1718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudogorieFood.Data", "Data\LudogorieFood.Data\LudogorieFood.Data.csproj", "{D1626015-B919-4EE5-97D3-443EAAFE274A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{3A0289D7-401D-4DBF-BC78-E789DEFA3B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudogorieFood.Models", "Models\LudogorieFood.Models\LudogorieFood.Models.csproj", "{43C1410D-9C76-4CB2-B524-7BFD311B184A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9407D843-EEEB-43C1-B139-D3AB97FDA10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9407D843-EEEB-43C1-B139-D3AB97FDA10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9407D843-EEEB-43C1-B139-D3AB97FDA10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9407D843-EEEB-43C1-B139-D3AB97FDA10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1626015-B919-4EE5-97D3-443EAAFE274A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1626015-B919-4EE5-97D3-443EAAFE274A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1626015-B919-4EE5-97D3-443EAAFE274A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1626015-B919-4EE5-97D3-443EAAFE274A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C1410D-9C76-4CB2-B524-7BFD311B184A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C1410D-9C76-4CB2-B524-7BFD311B184A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C1410D-9C76-4CB2-B524-7BFD311B184A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C1410D-9C76-4CB2-B524-7BFD311B184A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9407D843-EEEB-43C1-B139-D3AB97FDA10F} = {20DE9D7D-7294-40C7-9DF5-ECE9346797D6}
+		{D1626015-B919-4EE5-97D3-443EAAFE274A} = {2DEC298A-364E-4374-A379-5C73208A1718}
+		{43C1410D-9C76-4CB2-B524-7BFD311B184A} = {3A0289D7-401D-4DBF-BC78-E789DEFA3B6B}
+	EndGlobalSection
+EndGlobal
