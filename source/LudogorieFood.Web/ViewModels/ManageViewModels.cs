@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace LudogorieFood.Web.Models
+namespace LudogorieFood.Web.ViewModels
 {
     public class IndexViewModel
     {

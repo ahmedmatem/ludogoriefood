@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using LudogorieFood.Web.Models;
+using LudogorieFood.Web.ViewModels;
 
 namespace LudogorieFood.Web.Controllers
 {

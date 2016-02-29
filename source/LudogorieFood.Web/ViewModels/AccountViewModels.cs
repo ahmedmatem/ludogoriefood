@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace LudogorieFood.Web.Models
+namespace LudogorieFood.Web.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
