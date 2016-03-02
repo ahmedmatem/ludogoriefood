@@ -1,7 +1,42 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    min-width: 600px;
 }
+
+/* Header styling */
+.header-bottom {
+    background-color: rgb(29, 230, 33) !important;
+    padding: 20px;
+}
+    .header-bottom #slogan {
+        font: 20px 'Times New Roman';
+        color: white;
+    }
+
+/* Nav Bar styling */
+.navbar-default {
+    background-color: #ff0000;
+    border-color: #ff0000; 
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: #ff0000;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #dddccb;
+}
+
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: white;
+    }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

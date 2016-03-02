@@ -181,6 +181,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\title.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -211,8 +212,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -254,6 +253,10 @@
     <ProjectReference Include="..\Models\LudogorieFood.Models\LudogorieFood.Models.csproj">
       <Project>{43c1410d-9c76-4cb2-b524-7bfd311b184a}</Project>
       <Name>LudogorieFood.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\web\common\LudogorieFood.Web.Common\LudogorieFood.Web.Common.csproj">
+      <Project>{5b75e377-4627-459c-83a0-dcd447c846d0}</Project>
+      <Name>LudogorieFood.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
