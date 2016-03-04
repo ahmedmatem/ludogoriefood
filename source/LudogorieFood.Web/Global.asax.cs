@@ -14,6 +14,7 @@ namespace LudogorieFood.Web
     {
         protected void Application_Start()
         {
+            AutofacConfig.RegisterAutofac();
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
