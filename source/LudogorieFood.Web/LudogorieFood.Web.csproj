@@ -267,6 +267,10 @@
       <Project>{5b75e377-4627-459c-83a0-dcd447c846d0}</Project>
       <Name>LudogorieFood.Web.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\web\LudogorieFood.Web.Infrastructure\LudogorieFood.Web.Infrastructure.csproj">
+      <Project>{985fb93f-be6f-4f56-b2d0-f973577b1ca4}</Project>
+      <Name>LudogorieFood.Web.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

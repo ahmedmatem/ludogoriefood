@@ -1,14 +1,14 @@
-﻿using LudogorieFood.Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-namespace LudogorieFood.Web
+﻿namespace LudogorieFood.Web
 {
+    using System.Data.Entity;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using System.Reflection;
 
     using LudogorieFood.Data.Migrations;
+    using LudogorieFood.Data;
+    using Infrastructure.Mapping;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -20,6 +20,9 @@ namespace LudogorieFood.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }
