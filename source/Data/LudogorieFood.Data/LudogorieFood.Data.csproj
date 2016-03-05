@@ -74,6 +74,10 @@
       <Project>{43c1410d-9c76-4cb2-b524-7bfd311b184a}</Project>
       <Name>LudogorieFood.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\web\common\LudogorieFood.Web.Common\LudogorieFood.Web.Common.csproj">
+      <Project>{5b75e377-4627-459c-83a0-dcd447c846d0}</Project>
+      <Name>LudogorieFood.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602292028134_InitialCreate.resx">

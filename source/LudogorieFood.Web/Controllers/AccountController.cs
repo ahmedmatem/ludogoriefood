@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using LudogorieFood.Web.ViewModels;
+    using LudogorieFood.Web.ViewModels.Account;
     using LudogorieFood.Models;
 
     [Authorize]
