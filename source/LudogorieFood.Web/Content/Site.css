@@ -6,7 +6,7 @@
 /* Header styling */
 .header-bottom {
     background-color: rgb(29, 230, 33) !important;
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
 }
     .header-bottom #slogan {
         font: 20px 'Times New Roman';
@@ -31,11 +31,19 @@
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #dddccb;
+    color: #f2f2f2;
 }
 
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
         color: white;
+    }
+
+.nav > li {
+    margin: 0 5px 0;
+}
+
+    .nav .active {
+        border-bottom: 2px solid white;
     }
 
 /* Set padding to keep content from hitting the edges */
