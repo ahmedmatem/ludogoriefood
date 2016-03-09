@@ -26,7 +26,14 @@ namespace LudogorieFood.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
+                      "~/Content/bjqs.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/admin/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/bjqs.css",
+                      "~/Content/admin.css"));
         }
     }
 }

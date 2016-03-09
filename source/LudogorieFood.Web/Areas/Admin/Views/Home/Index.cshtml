@@ -1,0 +1,165 @@
+﻿@model LudogorieFood.Web.Areas.Admin.ViewModels.Home.HomePageViewModel
+
+@using LudogorieFood.Models
+
+@{
+    ViewBag.Title = "Admin Home";
+}
+<div>
+    <button class="btn btn-primary" data-visibility="show">Покажи презентациаята</button>
+</div>
+<br />
+
+<!--  Slider: Outer wrapper for presentation only, this can be anything you like -->
+<div id="wrapper" >
+
+    <!-- start Basic Jquery Slider -->
+    <ul class="bjqs">
+        <li>
+            <img src="~/Content/Images/img1.jpg" title="Automatically generated caption">
+        </li>
+        <li>
+            <img src="~/Content/Images/img2.jpg" title="Automatically generated caption">
+        </li>
+        <li>
+            <img src="~/Content/Images/img3.jpg" title="Automatically generated caption">
+        </li>
+    </ul>
+    <!-- end Basic jQuery Slider -->
+
+</div>
+<!-- End outer wrapper -->
+
+@{
+    var i = 0;
+}
+
+<!-- Slides -->
+@foreach (var slide in Model.Slides)
+{
+    i++;
+    if (i % 3 == 1)
+    {
+        @:<div class="row">
+    }
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="~/Content/Images/img1.jpg" alt="...">
+                @using (Html.BeginForm("MoveTo", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="Id" value="@slide.Id" />
+                    <input type="hidden" name="Motion" id="motion-@slide.Id" value="@SlideMotionType.None" />
+
+                    <div class="btn-group btn-group-sm caption"  role="group" aria-label="...">
+                        @if (i != 1)
+                        {
+                            <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.MoveLeft" title="Премести наляво">
+                                <i class="fa fa-arrow-left"></i>
+                            </button>
+                        }
+                        <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.Hide" title="Изтрий/Скрий">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                        @if (i != Model.Slides.Count)
+                        {
+                            <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.MoveRight" title="Премести надясно">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        }
+                    </div>
+                    
+                    <input type="submit" id="motion-submit-@slide.Id" class="btn btn-primary btn-sm" disabled="disabled" value="Приложи" />
+                    <span class="pull-right">Слайд @i</span>
+                }
+            </div>
+        </div>
+    if (i % 3 == 0)
+    {
+        @:</div>
+    }
+}
+
+@if (i % 3 != 0)
+{
+    @:</div>
+}
+
+@section scripts{
+    <script src="~/Scripts/bjqs.js"></script>
+    <script class="secret-source">
+        jQuery(document).ready(function($) {
+            $('#wrapper').bjqs({
+                animtype: 'slide',
+                height      : 320,
+                width       : 620,
+                responsive: true,
+                showmarkers: false
+            });
+
+            $('#wrapper').hide();
+
+            $("button[data-visibility]").click(function () {
+                // switch off all slides apply button
+                $('input[id^="motion-submit"]').attr("disabled", true);
+
+                if ($(this).attr('data-visibility') == "hide") {
+                    $(this).attr('data-visibility', 'show');
+                    $(this).html('Покажи презентациаята');
+                    $('#wrapper').hide('fade');
+                } else if ($(this).attr('data-visibility') == "show") {
+                    $(this).attr('data-visibility', 'hide');
+                    $(this).html('Скрий презентациаята');
+                    $('#wrapper').show('fade');
+                }
+            });
+
+            $("button[data-motion]").click(function () {
+                var id = $(this).attr('data-slide-id');
+                var motion = $(this).attr('data-motion');
+                $('#motion-' + id).val(motion);
+                // switch off all slides apply button
+                $('input[id^="motion-submit"]').attr("disabled", true);
+
+                // switch on applay button only in selected slide
+                $('#motion-submit-' + id).attr("disabled", false);
+
+                alert(selectedSlideSubmitId);
+            });
+        });
+    </script>
+}
+
+
+<!--
+Basic jQuery Slider usage
+
+// width and height need to be provided to enforce consistency
+// if responsive is set to true, these values act as maximum dimensions
+width : 700,
+height : 300,
+
+// animation values
+animtype : 'fade', // accepts 'fade' or 'slide'
+animduration : 450, // how fast the animation are
+animspeed : 4000, // the delay between each slide
+automatic : true, // automatic
+
+// control and marker configuration
+showcontrols : true, // show next and prev controls
+centercontrols : true, // center controls verically
+nexttext : 'Next', // Text for 'next' button (can use HTML)
+prevtext : 'Prev', // Text for 'previous' button (can use HTML)
+showmarkers : true, // Show individual slide markers
+centermarkers : true, // Center markers horizontally
+
+// interaction values
+keyboardnav : true, // enable keyboard navigation
+hoverpause : true, // pause the slider on hover
+
+// presentational options
+usecaptions : true, // show captions for images using the image title tag
+randomstart : true, // start slider at random slide
+responsive : true // enable responsive capabilities (beta) -->
+

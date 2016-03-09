@@ -9,14 +9,14 @@
     padding: 20px 20px 10px 20px;
 }
     .header-bottom #slogan {
-        font: 20px 'Buxton Sketch', 'Times New Roman';
+        font: 20px 'Times New Roman';
         color: white;
     }
 
 /* Nav Bar styling */
 .navbar-default {
     background-color: #ff0000;
-    border-color: #ff0000; 
+    border-color: #ff0000;
 }
 
 .navbar {
@@ -39,17 +39,22 @@
     }
 
 .nav > li {
-    margin: 0 5px 0;
+    margin: 0 3px 0;
 }
 
     .nav .active {
         border-bottom: 2px solid white;
     }
 
+#wrapper {
+    margin-top: -19px;
+}
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -65,3 +70,4 @@ select,
 textarea {
     max-width: 280px;
 }
+

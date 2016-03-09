@@ -58,11 +58,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="SlideMotionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slide.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\web\common\LudogorieFood.Web.Common\LudogorieFood.Web.Common.csproj">
+      <Project>{5b75e377-4627-459c-83a0-dcd447c846d0}</Project>
+      <Name>LudogorieFood.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
