@@ -20,6 +20,8 @@
         {
             return new ApplicationDbContext();
         }
+        public IDbSet<Slide> Slides { get; set; }
+
 
         public override int SaveChanges()
         {
