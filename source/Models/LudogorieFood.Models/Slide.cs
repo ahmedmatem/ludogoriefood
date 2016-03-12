@@ -4,14 +4,12 @@
 
     public class Slide : BaseModel<int>
     {
-        public string Name { get; set; }
+        public string PictureName { get; set; }
 
         public PictureType PictureType { get; set; }
 
-        public string PictureUrl { get; set; }
+        public int? NextSlideId { get; set; }
 
-        public int? Next { get; set; }
-
-        public int? Prev { get; set; }
+        public int? PrevSlideId { get; set; }
     }
 }

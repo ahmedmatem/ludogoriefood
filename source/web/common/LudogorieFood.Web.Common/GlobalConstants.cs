@@ -5,5 +5,7 @@
         public const string ApplicationName = "Ludogorie Foods";
 
         public const string Slogan = "Който от българско разбира, при нас се спира!";
+
+        public const string SliderImagesPath = "/Content/Images/Home";
     }
 }

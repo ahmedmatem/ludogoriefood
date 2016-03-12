@@ -1,6 +1,7 @@
 ﻿namespace LudogorieFood.Web.Infrastructure
 {
     using System;
+    using System.Web;
 
     using LudogorieFood.Models;
 
@@ -34,6 +35,14 @@
             var uniqueFileName = fileName + DateTime.Now.Millisecond;
 
             return uniqueFileName;
+        }
+
+        public static string GetBaseUrl(HttpRequestBase request)
+        {
+            string baseUrl = request.Url.Scheme + "://" + request.Url.Authority +
+            request.ApplicationPath.TrimEnd('/') + "/";
+
+            return baseUrl;
         }
     }
 }

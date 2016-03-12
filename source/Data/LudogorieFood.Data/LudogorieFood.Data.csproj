@@ -66,6 +66,14 @@
     <Compile Include="Migrations\201603120950010_AddSlidesTable.Designer.cs">
       <DependentUpon>201603120950010_AddSlidesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603121027113_Correct Slides Table.cs" />
+    <Compile Include="Migrations\201603121027113_Correct Slides Table.Designer.cs">
+      <DependentUpon>201603121027113_Correct Slides Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603121343180_Correct next and prev fields name.cs" />
+    <Compile Include="Migrations\201603121343180_Correct next and prev fields name.Designer.cs">
+      <DependentUpon>201603121343180_Correct next and prev fields name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603120950010_AddSlidesTable.resx">
       <DependentUpon>201603120950010_AddSlidesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603121027113_Correct Slides Table.resx">
+      <DependentUpon>201603121027113_Correct Slides Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603121343180_Correct next and prev fields name.resx">
+      <DependentUpon>201603121343180_Correct next and prev fields name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
