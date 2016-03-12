@@ -56,9 +56,9 @@
 
             foreach (var sld in slides)
             {
-                if (sld.NextSlideId == slide.Id)
+                if (slide.NextSlideId == sld.Id)
                 {
-                    return slide;
+                    return sld;
                 }
             }
 
