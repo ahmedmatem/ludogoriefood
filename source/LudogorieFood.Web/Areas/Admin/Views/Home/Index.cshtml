@@ -100,21 +100,21 @@
 
                     <input type="hidden" name="Id" value="@slide.Id" />
                     <input type="hidden" name="Motion" id="motion-@slide.Id" value="@SlideMotionType.None" />
-
+                    
                     <div class="btn-group btn-group-sm caption"  role="group" aria-label="...">
                         @if (i != 1)
                         {
                             <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.MoveLeft" title="Премести наляво">
-                                <i class="fa fa-arrow-left"></i>
+<i class="fa fa-arrow-left"></i>
                             </button>
-                        }
+                                }
                         <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.Hide" title="Изтрий/Скрий">
                             <i class="fa fa-remove"></i>
                         </button>
                         @if (i != Model.Slides.Count)
                         {
                             <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.MoveRight" title="Премести надясно">
-                                <i class="fa fa-arrow-right"></i>
+<i class="fa fa-arrow-right"></i>
                             </button>
                         }
                     </div>
@@ -168,14 +168,12 @@
             $("button[data-motion]").click(function () {
                 var id = $(this).attr('data-slide-id');
                 var motion = $(this).attr('data-motion');
-                $('#motion-' + id).val(motion);
+                $('#motion-' + id).attr("value", motion);
                 // switch off all slides apply button
                 $('input[id^="motion-submit"]').attr("disabled", true);
 
                 // switch on applay button only in selected slide
                 $('#motion-submit-' + id).attr("disabled", false);
-
-                alert(selectedSlideSubmitId);
             });
         });
     </script>

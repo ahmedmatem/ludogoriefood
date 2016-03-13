@@ -40,7 +40,38 @@
         [ValidateAntiForgeryToken]
         public ActionResult MoveTo(SlideViewModel model)
         {
-            return this.View();
+            if (model.Motion == SlideMotionType.MoveLeft)
+            {
+                
+            }
+
+            if (model.Motion == SlideMotionType.MoveRight)
+            {
+                Slide nextToNextSlide, prevSlide;
+                var targetSlide = this.slides.GetById(model.Id);
+                var nextSlide = this.slides.GetById((int)targetSlide.NextSlideId);
+
+                targetSlide.NextSlideId = nextSlide.NextSlideId;
+                if(nextSlide.NextSlideId != null)
+                {
+                    nextToNextSlide = this.slides.GetById((int)nextSlide.NextSlideId);
+                    nextToNextSlide.PrevSlideId = targetSlide.Id;
+                }
+
+                nextSlide.PrevSlideId = targetSlide.PrevSlideId;
+                if(targetSlide.PrevSlideId != null)
+                {
+                    prevSlide = this.slides.GetById((int)targetSlide.PrevSlideId);
+                    prevSlide.NextSlideId = nextSlide.Id;
+                }
+
+                nextSlide.NextSlideId = targetSlide.Id;
+                targetSlide.PrevSlideId = nextSlide.Id;
+            }
+
+            this.slides.Save();
+
+            return RedirectToAction("Index");
         }
 
         // TODO: Create [FileType(attribute)]
@@ -52,23 +83,21 @@
             {
                 // add new slides to database
                 var newSlide = new Slide();
+                newSlide.PictureName = Helpers.CreateUniqueFileName(slide.FileName);
+                newSlide.PictureType = Helpers.GetFileTypeFromName(slide.FileName).ConvertToPictureType();
                 slides.Add(newSlide);
                 slides.Save();
 
-                // get last inserted slide by CreateOn field
+                // get last inserted slide by CreatedOn field
                 newSlide = this.slides.All().OrderByDescending(s => s.CreatedOn).FirstOrDefault();
-
-                newSlide.PictureName = Helpers.CreateUniqueFileName(slide.FileName);
-                newSlide.PictureType = Helpers.GetFileTypeFromName(slide.FileName).ConvertToPictureType();
-
-                Slide currentSlide, nextSlide;
+                                
+                Slide currentSlide, nextSlide, prevSlide;
 
                 if (position == "after")
                 // Create new slide after slide with given slideId
                 {
                     currentSlide = this.slides.GetById(slideId);
                     if (currentSlide.NextSlideId == null)
-                    // if it is the last slide
                     {
                         currentSlide.NextSlideId = newSlide.Id;
                         newSlide.PrevSlideId = currentSlide.Id;
@@ -84,7 +113,20 @@
                 }
                 else if(position == "before")
                 {
-
+                    currentSlide = this.slides.GetById(slideId);
+                    if(currentSlide.PrevSlideId == null)
+                    {
+                        currentSlide.PrevSlideId = newSlide.Id;
+                        newSlide.NextSlideId = currentSlide.Id;
+                    }
+                    else
+                    {
+                        prevSlide = this.slides.GetById((int)currentSlide.PrevSlideId);
+                        currentSlide.PrevSlideId = newSlide.Id;
+                        newSlide.NextSlideId = currentSlide.Id;
+                        prevSlide.NextSlideId = newSlide.Id;
+                        newSlide.PrevSlideId = prevSlide.Id;
+                    }
                 }
                 
                 // store the slide picture inside ~/Content/Images/Home folder
