@@ -42,7 +42,26 @@
         {
             if (model.Motion == SlideMotionType.MoveLeft)
             {
-                
+                Slide prevToprevSlide, nextSlide;
+                var targetSlide = this.slides.GetById(model.Id);
+                var prevSlide = this.slides.GetById((int)targetSlide.PrevSlideId);
+
+                targetSlide.PrevSlideId = prevSlide.PrevSlideId;
+                if(prevSlide.PrevSlideId != null)
+                {
+                    prevToprevSlide = this.slides.GetById((int)prevSlide.PrevSlideId);
+                    prevToprevSlide.NextSlideId = targetSlide.Id;
+                }
+
+                prevSlide.NextSlideId = targetSlide.NextSlideId;
+                if(targetSlide.NextSlideId != null)
+                {
+                    nextSlide = this.slides.GetById((int)targetSlide.NextSlideId);
+                    nextSlide.PrevSlideId = prevSlide.Id;
+                }
+
+                prevSlide.PrevSlideId = targetSlide.Id;
+                targetSlide.NextSlideId = prevSlide.Id;
             }
 
             if (model.Motion == SlideMotionType.MoveRight)
