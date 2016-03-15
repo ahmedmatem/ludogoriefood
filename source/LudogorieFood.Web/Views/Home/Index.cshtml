@@ -1,24 +1,30 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model LudogorieFood.Web.ViewModels.Home.HomePageViewModel
+
+@{
+    ViewBag.Title = "Начало";
+    var slidesPath = LudogorieFood.Web.Common.GlobalConstants.SliderImagesPath;
 }
 
 <!--  Slider: Outer wrapper for presentation only, this can be anything you like -->
-<div id="wrapper">
-
-    <!-- start Basic Jquery Slider -->
-    <ul class="bjqs">
-        <li>
-            <img src="~/Content/Images/img1.jpg" title="Automatically generated caption">
-        </li>
-        <li>
-            <img src="~/Content/Images/img2.jpg" title="Automatically generated caption">
-        </li>
-        <li>
-            <img src="~/Content/Images/img3.jpg" title="Automatically generated caption">
-        </li>
-    </ul>
-    <!-- end Basic jQuery Slider -->
-
+<div class="row">
+    <div class="col-md-9">
+        <!-- start Basic Jquery Slider -->
+        <div id="wrapper">
+            <ul class="bjqs">
+                @foreach (var slide in Model.Slides)
+            {
+                var imgSrc = slidesPath + "/" + slide.PictureName + "." + slide.PictureType;
+                    <li>
+                        <img src="@Url.Content(imgSrc)" title="Automatically generated caption">
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- end Basic jQuery Slider -->
+    </div>
+    <div class="col-md-3>">
+        Aside
+    </div>
 </div>
 <!-- End outer wrapper -->
 
@@ -27,9 +33,9 @@
     <script class="secret-source">
         jQuery(document).ready(function($) {
             $('#wrapper').bjqs({
-                animtype: 'slide',
+                //animtype: 'slide',
                 height      : 320,
-                width       : 820,
+                width       : 1000,
                 responsive: true,
                 showmarkers: false
           });
