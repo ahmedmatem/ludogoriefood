@@ -15,15 +15,17 @@
 
     <!-- start Basic Jquery Slider -->
     <ul class="bjqs">
-        <li>
+        @*<li>
             <img src="~/Content/Images/img1.jpg" title="Automatically generated caption">
-        </li>
-        <li>
-            <img src="~/Content/Images/img2.jpg" title="Automatically generated caption">
-        </li>
-        <li>
-            <img src="~/Content/Images/img3.jpg" title="Automatically generated caption">
-        </li>
+        </li>*@
+        @foreach (var slide in Model.Slides)
+        {
+            var imgSrc = LudogorieFood.Web.Common.GlobalConstants.SliderImagesPath + "/" + slide.PictureName + "." + slide.PictureType;
+
+            <li>
+                <img src="@Url.Content(imgSrc)" title="Automatically generated caption">
+            </li>
+        }
     </ul>
     <!-- end Basic jQuery Slider -->
 
@@ -31,7 +33,7 @@
 <!-- End outer wrapper -->
 
 <hr />
-<strong>Добави нов слайд</strong><br />
+<p>Добави нов слайд</p>
 <div class="container fa fa-border">
     @using (Html.BeginForm("CreateNewSlide", "Home", FormMethod.Post, new { @class = "form-inline", enctype = "multipart/form-data" }))
     {
@@ -76,10 +78,12 @@
 </div>
 
 @{
+    var numberOfSlidesPerRow = LudogorieFood.Web.Common.GlobalConstants.NumberOfSlidesPerRow;
+    var colMdSize = 12 / numberOfSlidesPerRow;
     var i = 0;
 }
 <hr />
-<strong>Слайдове</strong><br />
+<p>Слайдове <span class="badge">@Model.Slides.Count</span></p>
 
 <!-- Slides -->
 @foreach (var slide in Model.Slides)
@@ -87,11 +91,11 @@
     var imgSrc = LudogorieFood.Web.Common.GlobalConstants.SliderImagesPath + "/" + slide.PictureName + "." + slide.PictureType;
 
     i++;
-    if (i % 3 == 1)
+    if (i % numberOfSlidesPerRow == 1)
     {
         @:<div class="row">
     }
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-@colMdSize">
             <div class="thumbnail">
                 <img src="@Url.Content(imgSrc)" alt="@slide.PictureName">
                 @using (Html.BeginForm("MoveTo", "Home", FormMethod.Post))
@@ -100,15 +104,15 @@
 
                     <input type="hidden" name="Id" value="@slide.Id" />
                     <input type="hidden" name="Motion" id="motion-@slide.Id" value="@SlideMotionType.None" />
-                    
+
                     <div class="btn-group btn-group-sm caption"  role="group" aria-label="...">
                         @if (i != 1)
                         {
                             <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.MoveLeft" title="Премести наляво">
 <i class="fa fa-arrow-left"></i>
                             </button>
-                                }
-                        <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.Hide" title="Изтрий/Скрий">
+                        }
+                        <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.Delete" title="Скрий">
                             <i class="fa fa-remove"></i>
                         </button>
                         @if (i != Model.Slides.Count)
@@ -118,19 +122,67 @@
                             </button>
                         }
                     </div>
-                    
+
                     <input type="submit" id="motion-submit-@slide.Id" class="btn btn-primary btn-sm" disabled="disabled" value="Приложи" />
-                    <span class="pull-right">Слайд @i</span>
+                    <span class="pull-right">@i</span>
                 }
             </div>
         </div>
-    if (i % 3 == 0)
+    if (i % numberOfSlidesPerRow == 0)
     {
         @:</div>
     }
 }
 
-@if (i % 3 != 0)
+@if (i % numberOfSlidesPerRow != 0)
+{
+    @:</div>
+}
+
+<hr />
+<p>Скрити слайдове <span class="badge">@Model.DeletedSlides.Count</span></p><br />
+
+<!-- Deleted Slides -->
+@{ i = 0; }
+@foreach (var slide in Model.DeletedSlides)
+{
+    var imgSrc = LudogorieFood.Web.Common.GlobalConstants.SliderImagesPath + "/" + slide.PictureName + "." + slide.PictureType;
+
+    i++;
+    if (i % numberOfSlidesPerRow == 1)
+    {
+        @:<div class="row">
+    }
+    <div class="col-sm-6 col-md-@colMdSize">
+        <div class="thumbnail">
+            <img src="@Url.Content(imgSrc)" alt="@slide.PictureName">
+            @using (Html.BeginForm("MoveTo", "Home", FormMethod.Post))
+                {
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="Id" value="@slide.Id" />
+                    <input type="hidden" name="Motion" id="motion-@slide.Id" value="@SlideMotionType.None" />
+
+                    <div class="btn-group btn-group-sm caption" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.HardDelete" title="Изтрий безвъзратно">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-slide-id="@slide.Id" data-motion="@SlideMotionType.Restore" title="Възстанови">
+                            <i class="fa fa-recycle"></i>
+                        </button>
+                    </div>
+
+                    <input type="submit" id="motion-submit-@slide.Id" class="btn btn-primary btn-sm" disabled="disabled" value="Приложи" />
+            }
+        </div>
+    </div>
+    if (i % numberOfSlidesPerRow == 0)
+    {
+        @:</div>
+    }
+}
+
+@if (i % numberOfSlidesPerRow != 0)
 {
     @:</div>
 }
@@ -141,7 +193,7 @@
     <script class="secret-source">
         jQuery(document).ready(function($) {
             $('#wrapper').bjqs({
-                animtype: 'slide',
+                animtype: 'fade',
                 height      : 320,
                 width       : 620,
                 responsive: true,

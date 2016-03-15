@@ -7,5 +7,7 @@
     public class HomePageViewModel
     {
         public ICollection<Slide> Slides { get; set; }
+
+        public ICollection<Slide> DeletedSlides { get; set; }
     }
 }

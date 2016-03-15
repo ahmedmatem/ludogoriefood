@@ -24,13 +24,17 @@
         // GET: Admin/Home
         public ActionResult Index()
         {
-            var slides = this.slides.All().Where(s => !s.IsDeleted).ToList();
+            var allWithDeleted = this.slides.AllWithDeleted().ToList();
 
-            var linkedSlides = new LinkedSlideList(slides);
+            var activeSlides = allWithDeleted.Where(s => !s.IsDeleted).ToList();
+            var deletedSlides = allWithDeleted.Where(s => s.IsDeleted).ToList();
+
+            var linkedSlides = new LinkedSlideList(activeSlides);
 
             var model = new HomePageViewModel()
             {
                 Slides = linkedSlides.Slides,
+                DeletedSlides = deletedSlides,
             };
 
             return View(model);
@@ -40,10 +44,12 @@
         [ValidateAntiForgeryToken]
         public ActionResult MoveTo(SlideViewModel model)
         {
+            var targetSlide = this.slides.GetById(model.Id);
+
+            // move to the left
             if (model.Motion == SlideMotionType.MoveLeft)
             {
                 Slide prevToprevSlide, nextSlide;
-                var targetSlide = this.slides.GetById(model.Id);
                 var prevSlide = this.slides.GetById((int)targetSlide.PrevSlideId);
 
                 targetSlide.PrevSlideId = prevSlide.PrevSlideId;
@@ -64,10 +70,10 @@
                 targetSlide.NextSlideId = prevSlide.Id;
             }
 
+            // move to the right
             if (model.Motion == SlideMotionType.MoveRight)
             {
                 Slide nextToNextSlide, prevSlide;
-                var targetSlide = this.slides.GetById(model.Id);
                 var nextSlide = this.slides.GetById((int)targetSlide.NextSlideId);
 
                 targetSlide.NextSlideId = nextSlide.NextSlideId;
@@ -86,6 +92,43 @@
 
                 nextSlide.NextSlideId = targetSlide.Id;
                 targetSlide.PrevSlideId = nextSlide.Id;
+            }
+
+            // delete
+            if(model.Motion == SlideMotionType.Delete)
+            {
+                Slide prevSlide, nextSlide;
+
+                if(targetSlide.PrevSlideId != null)
+                {
+                    prevSlide = this.slides.GetById((int)targetSlide.PrevSlideId);
+                    prevSlide.NextSlideId = targetSlide.NextSlideId;
+                }
+
+                if(targetSlide.NextSlideId != null)
+                {
+                    nextSlide = this.slides.GetById((int)targetSlide.NextSlideId);
+                    nextSlide.PrevSlideId = targetSlide.PrevSlideId;
+                }
+
+                this.slides.Delete(targetSlide);
+            }
+
+            if(model.Motion == SlideMotionType.HardDelete)
+            {
+                targetSlide = this.slides.AllWithDeleted().FirstOrDefault(s => s.Id == model.Id);
+                this.slides.HardDelete(targetSlide);
+            }
+
+            if(model.Motion == SlideMotionType.Restore)
+            {
+                var lastSlide = this.slides.All().FirstOrDefault(s => s.NextSlideId == null);
+                targetSlide = this.slides.AllWithDeleted().FirstOrDefault(s => s.Id == model.Id);
+                lastSlide.NextSlideId = targetSlide.Id;
+
+                targetSlide.PrevSlideId = lastSlide.Id;
+                targetSlide.NextSlideId = null;
+                targetSlide.IsDeleted = false;
             }
 
             this.slides.Save();
