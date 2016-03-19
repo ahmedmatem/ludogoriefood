@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Admin Home";
 }
+
 <div>
     <button class="btn btn-primary" data-visibility="show">Покажи презентациаята</button>
 </div>
@@ -40,13 +41,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group col-md-4">
-            <input type="file" name="slide" class="filestyle"
+            <input type="file" name="Slide" class="filestyle"
                    data-buttonBefore="true"
                    data-buttonText="Избери файл"
                    data-buttonName="btn-primary" />
         </div>
         <div class="form-group">
-            <select class="form-control" name="position">
+            <select class="form-control" name="Position">
                 @if (Model.Slides.Count == 0)
                 {
                     <option selected="selected" disabled="disabled" value=""></option>
@@ -59,7 +60,7 @@
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" name="slideId">
+            <select class="form-control" name="SlideId">
                 @if (Model.Slides.Count == 0)
                 {
                     <option selected="selected" value="0">Слайд #</option>
@@ -186,6 +187,7 @@
 {
     @:</div>
 }
+
 
 @section scripts{
     <script src="~/Scripts/bjqs.js"></script>

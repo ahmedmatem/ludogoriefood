@@ -5,13 +5,13 @@
     using System.Web;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using System.IO;
 
     using ViewModels.Home;
     using Models;
     using Common;
     using Infrastructure;
-    using System.IO;
-    
+
     public class HomeController : BaseAdminController
     {
         protected IDbRepository<Slide> slides;
@@ -135,18 +135,23 @@
 
             return RedirectToAction("Index");
         }
+        
 
-        // TODO: Create [FileType(attribute)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNewSlide(HttpPostedFileBase slide, string position, int slideId)
+        public ActionResult CreateNewSlide(SlideInputViewModel model)
         {
-            if (slide != null && slide.ContentLength > 0)
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if (model.Slide != null && model.Slide.ContentLength > 0)
             {
                 // add new slides to database
                 var newSlide = new Slide();
-                newSlide.PictureName = Helpers.CreateUniqueFileName(slide.FileName);
-                newSlide.PictureType = Helpers.GetFileTypeFromName(slide.FileName).ConvertToPictureType();
+                newSlide.PictureName = Helpers.CreateUniqueFileName(model.Slide.FileName);
+                newSlide.PictureType = Helpers.GetFileTypeFromName(model.Slide.FileName).ConvertToPictureType();
                 slides.Add(newSlide);
                 slides.Save();
 
@@ -155,10 +160,10 @@
                                 
                 Slide currentSlide, nextSlide, prevSlide;
 
-                if (position == "after")
+                if (model.Position == "after")
                 // Create new slide after slide with given slideId
                 {
-                    currentSlide = this.slides.GetById(slideId);
+                    currentSlide = this.slides.GetById(model.SlideId);
                     if (currentSlide.NextSlideId == null)
                     {
                         currentSlide.NextSlideId = newSlide.Id;
@@ -173,9 +178,9 @@
                         newSlide.NextSlideId = nextSlide.Id;
                     }
                 }
-                else if(position == "before")
+                else if(model.Position == "before")
                 {
-                    currentSlide = this.slides.GetById(slideId);
+                    currentSlide = this.slides.GetById(model.SlideId);
                     if(currentSlide.PrevSlideId == null)
                     {
                         currentSlide.PrevSlideId = newSlide.Id;
@@ -193,7 +198,7 @@
                 
                 // store the slide picture inside ~/Content/Images/Home folder
                 var path = Path.Combine(Server.MapPath(GlobalConstants.SliderImagesPath), newSlide.PictureName + "." + newSlide.PictureType);
-                slide.SaveAs(path);
+                model.Slide.SaveAs(path);
                 
                 // save changes to database
                 slides.Save();
