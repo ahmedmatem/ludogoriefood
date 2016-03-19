@@ -11,8 +11,8 @@
     using Common;
     using Infrastructure;
     using System.IO;
-
-    public class HomeController : Controller
+    
+    public class HomeController : BaseAdminController
     {
         protected IDbRepository<Slide> slides;
 
