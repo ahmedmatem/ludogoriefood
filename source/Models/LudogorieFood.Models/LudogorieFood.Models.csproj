@@ -58,7 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
-    <Compile Include="PictureType.cs" />
+    <Compile Include="Types\MeasureType.cs" />
+    <Compile Include="Types\PictureType.cs" />
+    <Compile Include="Products\Category.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="SlideMotionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Slide.cs" />

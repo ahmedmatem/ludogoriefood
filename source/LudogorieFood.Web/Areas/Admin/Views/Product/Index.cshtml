@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LudogorieFood.Web.Areas.Admin.ViewModels.Shop.ProductViewModel>
+
+@{
+    ViewBag.Title = "Shop, Products";
+    var products = Model;
+}
+
+
+@Html.Partial("_ANavigationPartial", TempData["ActiveMenuName"])
+
+<div class="container">
+    <a href="products/add" class="btn btn-primary"><span class="fa fa-plus"></span> New Product</a>
+</div>
+
+<div calss="container">
+    @if (products.Count() != 0)
+    {
+        <table class="table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Measure</th>
+                    <th>Price</th>
+                    <th>New Price</th>
+                    <th>In Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => product.Name)</td>
+                        <td>@Html.DisplayFor(m => product.Measure)</td>
+                        <td>@Html.DisplayFor(m => product.Price)</td>
+                        <td>@Html.DisplayFor(m => product.NewPrice)</td>
+                        <td>@Html.DisplayFor(m => product.InStock)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

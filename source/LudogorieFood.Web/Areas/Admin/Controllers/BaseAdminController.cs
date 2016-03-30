@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class BaseAdminController : Controller
     {
 

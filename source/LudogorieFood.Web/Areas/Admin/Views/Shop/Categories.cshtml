@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LudogorieFood.Models.Products.Category>
+
+@{
+    ViewBag.Title = "Shop, Categories";
+    var categories = Model;
+}
+
+@Html.Partial("_ANavigationPartial", TempData["ActiveMenuName"])
+
+<div calss="container">
+    @if (categories.Count() != 0)
+    {
+        <table class="table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in categories)
+                {
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>@category.Name</td>
+                    </tr>
+                }            
+            </tbody>
+        </table>
+    }
+</div>
+

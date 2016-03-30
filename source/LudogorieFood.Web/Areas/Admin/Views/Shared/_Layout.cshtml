@@ -19,10 +19,10 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="@Html.IsActive(controller: "Home", action: "Index")">
                     <a href="/admin/"><i class="fa fa-home"></i> Начало</a>
                 </li>
-                <li class="dropdown">
+                @*<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="themes">
                         <li><a href="../default/">Default</a></li>
@@ -30,9 +30,9 @@
                         <li><a href="../cerulean/">Cerulean</a></li>
                         <li><a href="../cosmo/">Cosmo</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="../help/">Help</a>
+                </li>*@
+                <li class="@Html.IsActive(controller: "Shop")">
+                    <a href="/admin/shop">Магазин</a>
                 </li>
                 <li>
                     <a href="http://news.bootswatch.com">Blog</a>
@@ -54,9 +54,10 @@
                 </li>
             </ul>
 
+            @Html.Partial("_LoginPartial")
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
             </ul>
 
         </div>

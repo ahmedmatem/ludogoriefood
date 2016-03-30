@@ -1,4 +1,4 @@
-﻿namespace LudogorieFood.Models
+﻿namespace LudogorieFood.Models.Types
 {
     public enum PictureType
     {

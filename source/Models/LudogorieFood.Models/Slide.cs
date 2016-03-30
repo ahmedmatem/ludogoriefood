@@ -1,5 +1,6 @@
 ﻿namespace LudogorieFood.Models
 {
+    using Types;
     using LudogorieFood.Web.Common.Models;
 
     public class Slide : BaseModel<int>

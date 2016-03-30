@@ -12,8 +12,15 @@ namespace LudogorieFood.Web.Areas.Admin
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+                "Admin_Shop_products",
+                "Admin/Shop/Products/{action}/{id}",
+                new { controller = "Product", action = "Index", id = UrlParameter.Optional},
+                new string[] { "LudogorieFood.Web.Areas.Admin.Controllers"}
+            );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",

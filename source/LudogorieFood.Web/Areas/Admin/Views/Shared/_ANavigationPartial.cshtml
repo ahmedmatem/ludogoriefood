@@ -1,0 +1,13 @@
+﻿@model string
+
+@{
+    string activeMenuName = Model;
+}
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class=@(activeMenuName == "Categories" ? "active" : "")><a href="categories">Категории</a></li>
+        <li role="presentation" class=@(activeMenuName == "Products" ? "active" : "")><a href="products">Продукти</a></li>
+        <li role="presentation" class=@(activeMenuName == "SomethingElse" ? "active" : "")><a href="#">Най-търсени</a></li>
+    </ul>
+</div>

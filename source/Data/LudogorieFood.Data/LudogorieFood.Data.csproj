@@ -74,6 +74,14 @@
     <Compile Include="Migrations\201603121343180_Correct next and prev fields name.Designer.cs">
       <DependentUpon>201603121343180_Correct next and prev fields name.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603192034310_AddingCategoriesAndProducts.cs" />
+    <Compile Include="Migrations\201603192034310_AddingCategoriesAndProducts.Designer.cs">
+      <DependentUpon>201603192034310_AddingCategoriesAndProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603251923087_AddProductFields.cs" />
+    <Compile Include="Migrations\201603251923087_AddProductFields.Designer.cs">
+      <DependentUpon>201603251923087_AddProductFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603121343180_Correct next and prev fields name.resx">
       <DependentUpon>201603121343180_Correct next and prev fields name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603192034310_AddingCategoriesAndProducts.resx">
+      <DependentUpon>201603192034310_AddingCategoriesAndProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603251923087_AddProductFields.resx">
+      <DependentUpon>201603251923087_AddProductFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

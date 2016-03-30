@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
 
     using Models;
+    using Models.Products;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -20,7 +21,12 @@
         {
             return new ApplicationDbContext();
         }
+
         public IDbSet<Slide> Slides { get; set; }
+
+        public IDbSet<Category> Categories { get; set; }
+
+        public IDbSet<Product> Products { get; set; }
 
 
         public override int SaveChanges()

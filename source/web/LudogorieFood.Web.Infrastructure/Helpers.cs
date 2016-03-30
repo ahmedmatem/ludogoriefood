@@ -4,6 +4,7 @@
     using System.Web;
 
     using LudogorieFood.Models;
+    using Models.Types;
 
     public static class Helpers
     {
