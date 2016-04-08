@@ -8,6 +8,8 @@
 
         public const string SliderImagesPath = "~/Content/Images/Home";
 
+        public const string ProductsImagesPath = "~/Content/Images/Products";
+
         public const int NumberOfSlidesPerRow = 4;
     }
 }

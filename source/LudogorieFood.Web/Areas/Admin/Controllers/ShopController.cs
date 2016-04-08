@@ -18,17 +18,9 @@
         // GET: Admin/Shop
         public ActionResult Index()
         {
-            return RedirectToAction("Categories");
-        }
-
-        // GET: Admin/Shop/Categories
-        public ActionResult Categories()
-        {
             TempData["ActiveMenuName"] = "Categories";
 
-            var categories = this.categories.All().ToList();
-
-            return this.View(categories);
-        } 
+            return this.View();
+        }
     }
 }

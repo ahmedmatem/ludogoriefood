@@ -16,8 +16,8 @@ namespace LudogorieFood.Web.Areas.Admin
         {
             context.MapRoute(
                 "Admin_Shop_products",
-                "Admin/Shop/Products/{action}/{id}",
-                new { controller = "Product", action = "Index", id = UrlParameter.Optional},
+                "Admin/Shop/{controller}/{action}/{id}",
+                new { controller = "Shop", action = "Index", id = UrlParameter.Optional},
                 new string[] { "LudogorieFood.Web.Areas.Admin.Controllers"}
             );
 

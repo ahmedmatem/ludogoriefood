@@ -1,17 +1,24 @@
 ﻿namespace LudogorieFood.Web.Areas.Admin.ViewModels.Shop
 {
+    using System.Web;
     using System.ComponentModel.DataAnnotations;
 
     using Models.Types;
-    using Infrastructure.Mapping;
     using Models.Products;
+
+    using Infrastructure.Mapping;
 
     public class ProductViewModel : IMapFrom<Product>
     {
         [Required]
         public string Name { get; set; }
+        
+        [Required]
+        [Display(Name="Category")]
+        public int CategoryId { get; set; }
 
-        public string PictureName { get; set; }
+        [Infrastructure.ValidationAttributes.FileExtensions("jpeg,jpg,png,gif")]
+        public HttpPostedFileBase Picture { get; set; }
 
         [Required]
         public MeasureType Measure { get; set; }
