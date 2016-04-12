@@ -1,0 +1,96 @@
+﻿@model LudogorieFood.Web.Areas.Admin.ViewModels.Shop.ProductViewModel
+
+@using LudogorieFood.Web.Common
+@{
+    ViewBag.Title = "Shop - Update product";
+}
+
+@Html.Partial("_ANavigationPartial", ViewData["ActiveMenuName"])
+
+@using (Html.BeginForm("Update", "Products", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Update product</h4>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.CategoryId, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryList, "value", "text"), "Избери категория", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Measure, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Measure, new { @class = "control-label" })
+                    @Html.EnumDropDownListFor(m => m.Measure, new { @class = "form-control enum-drop-down-list" })
+                    @Html.ValidationMessageFor(m => m.Measure, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Amount, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Amount, new { @class = "form-control text-box-80" })
+                    @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Price, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control text-box-80", id = "priceTextBoxId" })
+                    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.NewPrice, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.NewPrice, new { @class = "form-control text-box-80", id = "priceTextBoxId" })
+                    @Html.ValidationMessageFor(m => m.NewPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Picture, new { @class = "control-label" })
+            <input type="file" name="Picture" class="filestyle form-control"
+                   data-buttonBefore="true"
+                   data-buttonText="Избери файл"
+                   data-buttonName="btn-primary" />
+            <img src="@Url.Content(GlobalConstants.ProductsImagesPath + "/" + Model.PictureName)" class="img-w-100" />
+            @Html.ValidationMessageFor(m => m.Picture, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.InStock)
+                @Html.LabelFor(m => m.InStock)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <a href="@Url.Content("~/admin/shop/products")" class="btn btn-primary">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/bootstrap-filestyle.min.js"></script>
+    <script src="~/Scripts/base.js"></script>
+    <script>
+        $("document").ready(function () {
+            validateNumericTextBox("priceTextBoxId");
+        });
+    </script>
+}
+

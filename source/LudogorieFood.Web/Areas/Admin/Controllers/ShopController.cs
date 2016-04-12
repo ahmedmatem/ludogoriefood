@@ -8,18 +8,18 @@
 
     public class ShopController : BaseAdminController
     {
-        private IDbRepository<Category> categories;
+        private readonly IDbRepository<Category> categories;
 
         public ShopController(IDbRepository<Category> categories)
         {
             this.categories = categories;
+
+            ViewData["ActiveMenuName"] = "Categories";
         }
 
         // GET: Admin/Shop
         public ActionResult Index()
         {
-            TempData["ActiveMenuName"] = "Categories";
-
             return this.View();
         }
     }

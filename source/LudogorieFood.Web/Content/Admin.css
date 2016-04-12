@@ -62,9 +62,27 @@
 
 /*******/
 .enum-drop-down-list {
-    width: 100px;
+    width: 80px;
 }
 
 .text-box-100 {
+    width: 100px;
+}
+.text-box-90 {
+    width: 90px;
+}
+.text-box-80 {
+    width: 80px;
+}
+.text-box-70 {
+    width: 70px;
+}
+
+.tumbnail {
+    width: 30px;
+    height: 30px;
+}
+
+.img-w-100 {
     width: 100px;
 }

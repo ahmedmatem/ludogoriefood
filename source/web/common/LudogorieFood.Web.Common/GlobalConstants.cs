@@ -10,6 +10,8 @@
 
         public const string ProductsImagesPath = "~/Content/Images/Products";
 
+        public const string DefaultNoPictureName = "defaultNoPicture.jpg";
+
         public const int NumberOfSlidesPerRow = 4;
     }
 }

@@ -1,0 +1,31 @@
+﻿@model LudogorieFood.Web.Areas.Admin.ViewModels.Shop.CategoryViewModel
+
+@{
+    ViewBag.Title = "Shop - Update category";
+}
+
+@Html.Partial("_ANavigationPartial", ViewData["ActiveMenuName"])
+
+@using (Html.BeginForm("Update", "Categories", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Update category</h4>
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-4">
+            <a href="@Url.Content("~/admin/shop/categories")" class="btn btn-primary">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

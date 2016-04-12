@@ -1,11 +1,15 @@
-﻿@model IEnumerable<LudogorieFood.Models.Products.Category>
+﻿@model IEnumerable<LudogorieFood.Web.Areas.Admin.ViewModels.Shop.CategoryViewModel>
 
 @{
-    ViewBag.Title = "Shop, Categories";
+    ViewBag.Title = "Shop Categories";
     var categories = Model;
 }
 
-@Html.Partial("_ANavigationPartial", TempData["ActiveMenuName"])
+@Html.Partial("_ANavigationPartial", ViewData["ActiveMenuName"])
+
+<div class="container">
+    <a href="categories/create" class="btn btn-primary"><i class="fa fa-plus"></i> Create new category</a>
+</div>
 
 <div calss="container">
     @if (categories.Count() != 0)
@@ -13,20 +17,61 @@
         <table class="table-responsive table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Category Name</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var category in categories)
-                {
+            {
                     <tr>
-                        <th scope="row">3</th>
                         <td>@category.Name</td>
+                        <td>
+                            <a href="@Url.Content("~/admin/shop/categories/update/" + category.Id)" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;
+                            <a class="confirmLink" href="@Url.Content("~/admin/shop/categories/delete/" + category.Id)" title="Delete"><i class="fa fa-remove"></i></a>
+                        </td>
                     </tr>
-                }            
+                }
             </tbody>
-        </table>
+        </table> 
     }
 </div>
 
+<div id="dialog" title="Confirmation Required">
+    <p>
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+    These items will be marked as deleted and than you want to recover it. Are you sure?
+    </p>
+</div>
+
+@section scripts{
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: 210,
+                modal: true,
+            });
+        });
+
+        $(".confirmLink").click(function (e) {
+            e.preventDefault();
+            var targetUrl = $(this).attr("href");
+
+            $("#dialog").dialog({
+                buttons: {
+                    "Confirm": function () {
+                        window.location.href = targetUrl;
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#dialog").dialog("open");
+        });
+    </script>
+}

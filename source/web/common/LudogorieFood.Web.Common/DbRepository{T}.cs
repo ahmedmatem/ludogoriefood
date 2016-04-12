@@ -44,6 +44,12 @@
         {
             this.DbSet.Add(entity);
         }
+        
+        public void Update(T entity)
+        {
+            this.DbSet.Attach(entity);
+            this.Context.Entry<T>(entity).State = EntityState.Modified;
+        }
 
         public void Delete(T entity)
         {
@@ -53,6 +59,10 @@
 
         public void HardDelete(T entity)
         {
+            if (this.Context.Entry(entity).State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
             this.DbSet.Remove(entity);
         }
 

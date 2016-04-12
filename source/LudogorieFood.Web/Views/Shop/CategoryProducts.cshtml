@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LudogorieFood.Web.ViewModels.Shop.ProductViewModel>
+
+@{
+    ViewBag.Title = "Shop - Category products";
+    int productCounter = 0;
+}
+
+<div class="row">
+
+    <!-- Categories nav -->
+    <div class="col-md-3">
+        @Html.Partial("_CategoriesNavPartial")
+    </div>
+
+    <!-- Category product thumbnails panel -->
+    <div class="col-md-9">
+        @if (Model.Count() != 0)
+        {
+            @:<div class="row row-custom">
+            foreach (var product in Model)
+            {
+                productCounter++;
+
+                if (productCounter % 3 == 0)
+                {
+                    @:<div class="row row-custom">
+                }
+
+                @Html.Partial("_ProductThumbnailPartial", product)
+
+                if (productCounter % 3 == 0)
+                {
+                    @:</div>
+                }
+            }
+
+            if (productCounter % 3 != 0)
+            {
+                @:</div>
+            }
+
+        }
+
+    </div>
+
+</div>
+

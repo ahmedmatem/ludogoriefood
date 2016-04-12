@@ -14,7 +14,7 @@
 
     public class HomeController : BaseAdminController
     {
-        protected IDbRepository<Slide> slides;
+        private readonly IDbRepository<Slide> slides;
 
         public HomeController(IDbRepository<Slide> slides)
         {

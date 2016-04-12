@@ -1,23 +1,23 @@
 ﻿@model LudogorieFood.Web.Areas.Admin.ViewModels.Shop.ProductViewModel
 
 @{
-    ViewBag.Title = "Shop, Adding Product";
+    ViewBag.Title = "Shop - Create product";
 }
 
 
-@Html.Partial("_ANavigationPartial", TempData["ActiveMenuName"])
+@Html.Partial("_ANavigationPartial", ViewData["ActiveMenuName"])
 
-@using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Add new product</h4>
+    <h4>Create new product</h4>
     
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         <div class="col-md-4">
             @Html.LabelFor(m => m.CategoryId, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryList, "text", "value"), "Избери категория", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryList, "value", "text"), "Избери категория", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Measure, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -31,16 +31,23 @@
     </div>
     <div class="form-group">
         <div class="col-md-4">
-            @Html.LabelFor(m => m.Measure, new { @class = "control-label" })
-            @Html.EnumDropDownListFor(m => m.Measure, new { @class = "form-control enum-drop-down-list" })
-            @Html.ValidationMessageFor(m => m.Measure, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-4">
-            @Html.LabelFor(m => m.Price, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Price, new { @class = "form-control text-box-100", id="priceTextBoxId" })
-            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Measure, new { @class = "control-label" })
+                    @Html.EnumDropDownListFor(m => m.Measure, new { @class = "form-control enum-drop-down-list" })
+                    @Html.ValidationMessageFor(m => m.Measure, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Amount, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Amount, new { @class = "form-control enum-drop-down-list" })
+                    @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                   @Html.LabelFor(m => m.Price, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control text-box-100", id = "priceTextBoxId" })
+                    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -63,7 +70,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-4">
-            <input type="submit" value="Add" class="btn btn-primary" />
+            <a href="@Url.Content("~/admin/shop/products")" class="btn btn-primary">Cancel</a>
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </div>
 }

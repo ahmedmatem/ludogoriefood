@@ -1,0 +1,17 @@
+﻿
+<div class="header header-success">
+    <span class="header-title">Категории</span>
+</div>
+<ul class="nav nav-pills nav-stacked">
+    @foreach (var category in ViewBag.Categories)
+            {
+        <li role="presentation" class="@(ViewBag.CategoryId == category.Id ? "active" : "")">
+            <a href="@Url.Content("~/Shop/CategoryProducts/" + category.Id)">
+                @category.Name
+                <div class=" pull-right badge badge-success">
+                    @ViewBag.NumberOfProductsInCategories[category.Id]
+                </div>
+            </a>
+        </li>
+    }
+</ul>
