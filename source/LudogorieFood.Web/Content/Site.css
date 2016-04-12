@@ -91,12 +91,12 @@ textarea {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    background-color: #f00;
+    background-color: rgba(71, 64, 242, 0.20);
 }
 
 .nav > li > a:hover,
 .nav > li > a:focus {
-    background-color: #fafafa;
+    background-color: #efefef;
 }
 
 .nav > li {
@@ -104,7 +104,7 @@ textarea {
 }
 
 .badge-success {
-    background-color: rgba(29, 230, 33, 0.50);
+    background-color: rgba(71, 64, 242, 0.20);
     border-radius: 6px 0;
     font-weight: normal;
 }
@@ -116,7 +116,7 @@ textarea {
 */
 .header {
   padding: 10px 15px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   border: 1px solid transparent;
   border-radius: 0;
 }
@@ -127,9 +127,16 @@ textarea {
 
 .header-success {
     color: #fff;
-    background-color: rgb(29, 230, 33);
-    border-color: #62c13c;
+    background-color: rgba(71, 64, 242, 0.60);
 }
 
-/***********/
+/*******************/
+
+.text-line-through {
+    text-decoration: line-through;
+}
+
+.border-left {
+    border-left: 1px solid #ddd;
+}
 

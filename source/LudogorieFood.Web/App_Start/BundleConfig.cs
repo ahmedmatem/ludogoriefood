@@ -27,6 +27,7 @@ namespace LudogorieFood.Web
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/bjqs.css",
+                      "~/Content/rateyo.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin/css").Include(

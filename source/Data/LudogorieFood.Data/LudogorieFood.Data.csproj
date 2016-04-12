@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201604091757581_ChangeProductTable.Designer.cs">
       <DependentUpon>201604091757581_ChangeProductTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604122042510_AddProductRating.cs" />
+    <Compile Include="Migrations\201604122042510_AddProductRating.Designer.cs">
+      <DependentUpon>201604122042510_AddProductRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -124,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604091757581_ChangeProductTable.resx">
       <DependentUpon>201604091757581_ChangeProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604122042510_AddProductRating.resx">
+      <DependentUpon>201604122042510_AddProductRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,12 +5,22 @@
     <div class="thumbnail">
         <img src="@Url.Content(GlobalConstants.ProductsImagesPath + "/" + Model.PictureName)" alt="...">
         <div class="caption">
-            <h3>Thumbnail label</h3>
-            <p>...</p>
+            <div><strong>@Model.Name</strong></div>            
             <p>
-                <a href="#" class="btn btn-primary" role="button">Button</a> 
-                <a href="#" class="btn btn-default" role="button">Button</a>
+                Цена:&nbsp;
+                @if (Model.NewPrice != decimal.Zero)
+                {
+                    @:(<span class="text-line-through">&pound;@Model.Price</span>)&nbsp;&pound;@Model.NewPrice
+                }
+                else
+                {
+                    @:&pound;@Model.Price
+                }
             </p>
+            <div class="rateyo" data-productId="@Model.Id" rating="@Model.OverallRating"></div>
+            @*<p>
+                <a href="#" class="btn btn-primary" role="button">Информация</a>
+            </p>*@
         </div>
     </div>
 </div>

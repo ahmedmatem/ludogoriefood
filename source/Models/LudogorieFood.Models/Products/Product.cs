@@ -24,6 +24,10 @@
 
         public decimal NewPrice { get; set; }
 
+        public int TotalRating { get; set; }
+
+        public float OverallRating { get; set; }
+
         public bool InStock { get; set; }
 
         [Required]

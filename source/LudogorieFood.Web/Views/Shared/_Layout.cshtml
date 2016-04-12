@@ -58,7 +58,7 @@
                 <div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" aria-expanded="true">
                     <ul class="nav navbar-nav">
                         <li class="@Html.IsActive(controller: "Home", action: "Index")"><a href="@Url.Content("~/")"><i class="fa fa-home fa-fw"></i>&nbsp; Начало<span class="sr-only"></span></a></li>
-                        <li class="@Html.IsActive(controller: "Shop", action: "Index")"><a href="@Url.Content("~/Shop/Index")">Магазин</a></li>
+                        <li class="@Html.IsActive(controller: "Shop")"><a href="@Url.Content("~/Shop/Index")">Магазин</a></li>
                         <li><a href="#">За нас</a></li>
                         <li><a href="#">Контакт</a></li>
                     </ul>

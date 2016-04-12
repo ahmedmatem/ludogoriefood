@@ -33,6 +33,20 @@
             return this.View();
         }
 
+        // GET: shop/ProductRating
+        public JsonResult ProductRating(float rating, int productId)
+        {
+            var product = this.products.GetById(productId);
+
+            product.OverallRating = (product.OverallRating * product.TotalRating + rating) / (product.TotalRating + 1);
+            product.TotalRating++;
+
+            this.products.Update(product);
+            this.products.Save();
+
+            return Json(new { rating = product.OverallRating }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: shop/products/categoryID
         public ActionResult CategoryProducts(int id)
         {

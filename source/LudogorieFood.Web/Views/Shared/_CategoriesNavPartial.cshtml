@@ -2,7 +2,7 @@
 <div class="header header-success">
     <span class="header-title">Категории</span>
 </div>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked fa-border">
     @foreach (var category in ViewBag.Categories)
             {
         <li role="presentation" class="@(ViewBag.CategoryId == category.Id ? "active" : "")">

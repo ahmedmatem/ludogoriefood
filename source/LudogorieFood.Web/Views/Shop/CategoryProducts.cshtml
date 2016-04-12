@@ -13,7 +13,7 @@
     </div>
 
     <!-- Category product thumbnails panel -->
-    <div class="col-md-9">
+    <div class="col-md-9 border-left">
         @if (Model.Count() != 0)
         {
             @:<div class="row row-custom">
@@ -44,4 +44,40 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="~/Scripts/rateyo.js"></script>    
+    <script>
+        $(".rateyo").each(function () {
+            $(this).rateYo({
+                starWidth: "20px",
+                //normalFill: "#A0A0A0",
+                //ratedFill: "#E74C3C",
+                //numStars: 10, //default: 5
+                //readOnly: true,
+                //spacing: "2px",
+                rating: $(this).attr("rating"),
+            });
+        });
+
+        $(".rateyo").click(function () {
+            var $rateyo = $(this).rateYo();
+
+            var productId = $(this).attr("data-productId");
+            var rating = $(this).rateYo("rating");
+
+            $.get(
+                "@Url.Content("~/shop/productrating")",
+                { rating: rating, productId: productId },
+                function (data) {
+                    //set new rating
+                    //alert(data.rating);
+                    $rateyo.rateYo("rating", data.rating);
+                    $rateyo.rateYo("option", "readOnly", "true");
+                },
+                "json"
+            );
+        });
+    </script>
+}
 
